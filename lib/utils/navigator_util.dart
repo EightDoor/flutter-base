@@ -16,7 +16,7 @@ class NavigatorUtil {
   // 跳转到首页面
   static void goHome() {
     // 将 splash 页面给移除掉了，这点后退键的时候就不会再出现Splash页面
-    Get.offNamed(RouteCore.home);
+    Get.offNamed(RouteCore.tabs);
   }
 
   // 跳转直接移除不返回
