@@ -25,8 +25,6 @@ dependencies:
     sdk: flutter
   # 网络请求
   dio: ^4.0.0
-  # 路由
-  fluro: ^2.0.3
   # 上拉加载 下拉刷新
   flutter_easyrefresh: ^2.2.1
   # 加载loading
@@ -48,6 +46,9 @@ dependencies:
   flustars: ^2.0.1
   # json序列化数据
   json_annotation: ^4.0.1
+  # getx
+  get: ^4.1.4
+
 
 
 dev_dependencies:

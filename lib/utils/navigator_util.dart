@@ -1,25 +1,22 @@
-import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterbbase/pages/login/login.dart';
-import 'package:flutterbbase/routes/application.dart';
-import 'package:flutterbbase/routes/routes.dart';
+import 'package:flutterbbase/routes/core/core.dart';
 import 'package:flutterbbase/utils/constant.dart';
 import 'package:flutterbbase/utils/index.dart';
+import 'package:get/get.dart';
 import 'package:sp_util/sp_util.dart';
 
 /// 页面跳转
 class NavigatorUtil {
   // 返回
-  static void goBack(BuildContext context) {
-    Application.router!.pop(context);
+  static void goBack() {
+    Get.back();
   }
 
   // 跳转到首页面
-  static void goHome(
-    BuildContext context,
-  ) {
-    // replace：true 就是将 splash 页面给移除掉了，这点后退键的时候就不会再出现Splash页面
-    Application.router!.navigateTo(context, Routes.home, replace: true);
+  static void goHome() {
+    // 将 splash 页面给移除掉了，这点后退键的时候就不会再出现Splash页面
+    Get.offNamed(RouteCore.home);
   }
 
   // 跳转直接移除不返回
@@ -39,12 +36,8 @@ class NavigatorUtil {
   }
 
   // 跳转到指定的转场动画 inFromRight
-  static Future jump(BuildContext context, String path) {
-    return Application.router!.navigateTo(
-      context,
-      path,
-      transition: TransitionType.native,
-    );
+  static jump({required String name, dynamic? arguments}) {
+    Get.toNamed(name, arguments: arguments);
   }
 
   // 跳转到登录页并删除当前路由

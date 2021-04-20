@@ -14,7 +14,7 @@ class _StartUpScreenState extends State<StartUpScreen> {
     super.initState();
     init();
     Future.delayed(Duration(seconds: 2), () {
-      NavigatorUtil.goHome(context);
+      NavigatorUtil.goHome();
     });
   }
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutterbbase/utils/upgrade_util.dart';
 
 /// 首页
 class Home extends StatefulWidget {
@@ -11,7 +10,8 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    UpgradeUtil.upgrade(context: context);
+    // app升级初始化
+    // UpgradeUtil.upgrade(context: context);
   }
 
   @override

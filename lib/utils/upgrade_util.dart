@@ -56,13 +56,23 @@ class UpgradeUtil {
   }
 
   /// 显示弹出框
-  static void show(BuildContext context) {
-    showDialog(
+  static void show(BuildContext context) async {
+    var result = await showDialog(
       context: context,
       builder: (context) {
-        return UpgradeDialog();
+        return SimpleDialog(
+          title: Center(
+            child: Text("升级"),
+          ),
+          children: [
+            UpgradeDialog(),
+          ],
+        );
       },
     );
+    if (result != null) {
+      Utils.log().i("点击了关闭: " + result);
+    }
     // isDownload();
   }
 

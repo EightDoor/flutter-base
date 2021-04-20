@@ -1,31 +1,27 @@
-import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutterbbase/routes/application.dart';
+import 'package:flutterbbase/routes/core/core.dart';
 import 'package:flutterbbase/routes/routes.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp() {
-    final router = FluroRouter();
-    Routes.configRoutes(router);
-    Application.router = router;
-  }
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: Size(360, 690),
-      builder: () => MaterialApp(
+      builder: () => GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
+        initialRoute: RouteCore.startUp,
+        getPages: RouterConfig.getPage,
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        onGenerateRoute: Application.router!.generator,
         builder: EasyLoading.init(),
       ),
     );
