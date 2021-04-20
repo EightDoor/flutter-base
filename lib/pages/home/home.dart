@@ -7,7 +7,7 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     super.initState();
@@ -22,4 +22,6 @@ class _HomeState extends State<Home> {
       body: Text("首页"),
     );
   }
+
+  bool get wantKeepAlive => true;
 }

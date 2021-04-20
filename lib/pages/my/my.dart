@@ -6,9 +6,11 @@ class My extends StatefulWidget {
   _MyState createState() => _MyState();
 }
 
-class _MyState extends State<My> {
+class _MyState extends State<My> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     return Text("我的");
   }
+
+  bool get wantKeepAlive => true;
 }

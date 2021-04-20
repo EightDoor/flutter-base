@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterbbase/pages/home/home.dart';
 import 'package:flutterbbase/pages/my/my.dart';
+import 'package:flutterbbase/utils/upgrade_util.dart';
 
 /// 导航
 class Tabs extends StatefulWidget {
