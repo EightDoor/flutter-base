@@ -3,11 +3,16 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterbbase/api/api_common.dart';
+import 'package:flutterbbase/components/Progress.dart';
 import 'package:flutterbbase/config/config.dart';
+import 'package:flutterbbase/models/upgrade.dart';
 import 'package:flutterbbase/utils/index.dart';
 import 'package:flutterbbase/utils/upgrade_dialog.dart';
+import 'package:get/get.dart';
 import 'package:package_info/package_info.dart';
 import 'package:r_upgrade/r_upgrade.dart';
+
+GlobalKey globalKeyUpgrade = GlobalKey();
 
 class UpgradeUtil {
   /// 升级
@@ -27,7 +32,9 @@ class UpgradeUtil {
         final String buildVersion = value.data.buildVersion;
         final bool result = versionComparison(buildVersion, version);
         if (result) {
-          show(context);
+          UpgradeUtil.show(context, value);
+        } else {
+          Utils.showToast(status: "已经是最新版本了");
         }
         // Utils.log().i(value.toJson());
       });
@@ -47,25 +54,50 @@ class UpgradeUtil {
     return false;
   }
 
-  /// 下载应用
-  static void install(int id) async {
-    await RUpgrade.install(id);
-    RUpgrade.stream.listen((event) {
-      Utils.log().i(event.percent);
-    });
-  }
-
   /// 显示弹出框
-  static void show(BuildContext context) async {
+  static void show(BuildContext context, Upgrade upgrade) async {
     var result = await showDialog(
       context: context,
       builder: (context) {
         return SimpleDialog(
+          key: globalKeyUpgrade,
           title: Center(
-            child: Text("升级"),
+            child: Text(upgrade.data.buildName),
           ),
           children: [
-            UpgradeDialog(),
+            Stack(
+              children: [
+                UpgradeDialog(upgrade: upgrade),
+                // Positioned(
+                //   top: 0,
+                //   left: 0,
+                //   child:
+                //       WaveProgress(180.0, Colors.blue, Colors.blueAccent, 50),
+                // ),
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      SimpleDialogOption(
+                        child: Text("更新"),
+                        onPressed: () {
+                          Utils.log().i("更新");
+                          isDownload();
+                        },
+                      ),
+                      SimpleDialogOption(
+                        child: Text("取消"),
+                        onPressed: () {
+                          Get.back();
+                        },
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            )
           ],
         );
       },
@@ -82,5 +114,13 @@ class UpgradeUtil {
     if (id != null) {
       install(id);
     }
+  }
+
+  /// 下载应用
+  static void install(int id) async {
+    await RUpgrade.install(id);
+    RUpgrade.stream.listen((event) {
+      Utils.log().i(event.percent);
+    });
   }
 }

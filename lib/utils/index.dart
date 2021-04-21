@@ -57,4 +57,15 @@ class Utils {
     var logger = Logger();
     return logger;
   }
+
+  /// 弹出toast框
+  static void showToast({
+    required String status,
+    EasyLoadingToastPosition? position,
+  }) {
+    EasyLoading.showToast(
+      status,
+      toastPosition: position ?? EasyLoadingToastPosition.center,
+    );
+  }
 }
