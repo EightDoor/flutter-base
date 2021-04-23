@@ -19,7 +19,11 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
       appBar: AppBar(
         title: Text("首页"),
       ),
-      body: Text("首页"),
+      body: Column(
+        children: [
+          Text("首页"),
+        ],
+      ),
     );
   }
 

@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterbbase/api/api_common.dart';
-import 'package:flutterbbase/components/Progress.dart';
 import 'package:flutterbbase/config/config.dart';
 import 'package:flutterbbase/models/upgrade.dart';
 import 'package:flutterbbase/utils/index.dart';
@@ -17,6 +17,7 @@ GlobalKey globalKeyUpgrade = GlobalKey();
 class UpgradeUtil {
   /// 升级
   static upgrade({bool? click, required BuildContext context}) async {
+    Utils.showLoading();
     return UpgradeUtil.getDeviceInfo(click: click, context: context);
   }
 
@@ -38,6 +39,7 @@ class UpgradeUtil {
         }
         // Utils.log().i(value.toJson());
       });
+      Utils.hideLoading();
       Utils.log().i("android版本: $version");
     } else if (isIos) {
       Utils.log().i("ios版本: $version");
@@ -77,6 +79,7 @@ class UpgradeUtil {
                 Positioned(
                   bottom: 0,
                   left: 0,
+                  width: .8.sw,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [

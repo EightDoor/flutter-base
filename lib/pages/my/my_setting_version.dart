@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutterbbase/routes/demo/demo.dart';
 import 'package:flutterbbase/utils/index.dart';
+import 'package:flutterbbase/utils/navigator_util.dart';
 import 'package:flutterbbase/utils/upgrade_util.dart';
+import 'package:get/get.dart';
 import 'package:package_info/package_info.dart';
 
 /// 我的设置版本
@@ -29,7 +31,6 @@ class _MySettingVersionState extends State<MySettingVersion> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100.h,
       child: Column(
         children: [
           ListTile(
@@ -43,6 +44,26 @@ class _MySettingVersionState extends State<MySettingVersion> {
               },
             ),
           ),
+          ListTile(
+            leading: Text("改变主题"),
+            trailing: RaisedButton(
+              child: Text("点击改变主题"),
+              onPressed: () {
+                Get.changeTheme(
+                  Get.isDarkMode ? ThemeData.light() : ThemeData.dark(),
+                );
+              },
+            ),
+          ),
+          ListTile(
+            leading: Text("demo"),
+            trailing: RaisedButton(
+              child: Text("跳转demo"),
+              onPressed: () {
+                NavigatorUtil.jump(name: DemoRoute.form);
+              },
+            ),
+          )
         ],
       ),
     );

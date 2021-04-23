@@ -48,9 +48,12 @@ dependencies:
   json_annotation: ^4.0.1
   # getx
   get: ^4.1.4
-
-
-
+  # svg
+  flutter_svg: ^0.22.0
+  # 多图预览
+  photo_view: ^0.11.1
+  # 视频播放
+  video_player: ^2.1.1
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +73,9 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  assets:
+    - assets/other/noData.png
+    - assets/other/underDevelopment.png
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
@@ -100,3 +106,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+

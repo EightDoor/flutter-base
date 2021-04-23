@@ -3,6 +3,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterbbase/routes/core/core.dart';
 import 'package:flutterbbase/routes/routes.dart';
+import 'package:flutterbbase/utils/theme.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -19,9 +20,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         initialRoute: RouteCore.startUp,
         getPages: RouterConfig.getPage,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: themeColorMap["default"],
         builder: EasyLoading.init(),
       ),
     );

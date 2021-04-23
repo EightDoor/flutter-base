@@ -68,4 +68,14 @@ class Utils {
       toastPosition: position ?? EasyLoadingToastPosition.center,
     );
   }
+
+  /// 弹出loading
+  static void showLoading({String title = "加载中..."}) {
+    EasyLoading.show(status: title, dismissOnTap: false);
+  }
+
+  /// 隐藏loading
+  static void hideLoading() {
+    EasyLoading.dismiss();
+  }
 }

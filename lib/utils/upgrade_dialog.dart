@@ -19,13 +19,15 @@ class _UpgradeDialogState extends State<UpgradeDialog> {
     setState(() {
       data = widget.upgrade.data;
     });
-    Utils.log().i(widget.upgrade.data.toJson(),);
+    Utils.log().i(
+      widget.upgrade.data.toJson(),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200.w,
+      width: .8.sw,
       height: 200.h,
       decoration: BoxDecoration(
         color: Colors.white,

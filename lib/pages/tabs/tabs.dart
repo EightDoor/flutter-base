@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterbbase/pages/home/home.dart';
 import 'package:flutterbbase/pages/my/my.dart';
-import 'package:flutterbbase/utils/index.dart';
 
 /// 导航
 class Tabs extends StatefulWidget {
@@ -64,7 +63,6 @@ class _TabsState extends State<Tabs> {
         type: BottomNavigationBarType.fixed,
         currentIndex: this._currentIndex,
         onTap: (int index) {
-          Utils.log().i(index);
           setState(() {
             this._currentIndex = index;
             this._pageController.jumpToPage(this._currentIndex);
