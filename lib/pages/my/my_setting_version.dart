@@ -58,7 +58,7 @@ class _MySettingVersionState extends State<MySettingVersion> {
           ListTile(
             leading: Text("demo"),
             trailing: RaisedButton(
-              child: Text("跳转demo"),
+              child: Text("表单demo"),
               onPressed: () {
                 NavigatorUtil.jump(name: DemoRoute.form);
               },

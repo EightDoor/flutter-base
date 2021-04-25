@@ -78,4 +78,9 @@ class Utils {
   static void hideLoading() {
     EasyLoading.dismiss();
   }
+
+  /// 隐藏键盘
+  static void hideKeyBoard(BuildContext context) {
+    FocusScope.of(context).requestFocus(FocusNode());
+  }
 }
