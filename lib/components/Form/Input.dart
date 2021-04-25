@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutterbbase/models/Form/input.dart';
-import 'package:flutterbbase/utils/index.dart';
 
 /// 输入
 typedef FormCallBackItem = Function(String val);
@@ -31,8 +30,8 @@ class _FormInputState extends State<FormInput> {
     if (widget.formInputModel.value != null &&
         widget.formInputModel.value!.isNotEmpty) {
       final String value = widget.formInputModel.value ?? "";
-      Utils.log()
-          .i( '更新的name: ' + widget.formInputModel.name + ',更新的值: ' + value);
+      // Utils.log()
+      //     .i( '更新的name: ' + widget.formInputModel.name + ',更新的值: ' + value);
       Future.delayed(Duration(milliseconds: 10), () {
         _controller.value = TextEditingValue(text: value);
       });

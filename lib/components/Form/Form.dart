@@ -112,20 +112,8 @@ class _FormComState extends State<FormCom> {
 
   // 根据不同类型显示对应的组件
   Widget _genChild(FormSelfModel m, FormCallBackItem call) {
-    /// type = 'input' FormInputModel转换
-    Widget item = Text("没有匹配类型, 请输入 input、");
-    switch (m.type) {
-      case "input":
-        item = FormFieldCom(
-          FormInputModel.formJson(
-            m.properties,
-          ),
-          (val) {
-            call(val);
-          },
-        );
-        break;
-    }
-    return item;
+    return FormFieldCom(FormInputModel.formJson(m.properties), m, (val) {
+      call(val);
+    });
   }
 }

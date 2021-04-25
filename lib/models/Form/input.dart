@@ -18,6 +18,11 @@ class FormInputModel {
   // 值 添加为默认值
   final String? value;
 
+  // 标题 select
+  final String? title;
+  // 列表项 select
+  final List<Map<String, dynamic>>? list;
+
   FormInputModel(
     this.placeHolder,
     this.prefix,
@@ -27,6 +32,8 @@ class FormInputModel {
     this.required,
     this.requiredMsg,
     this.value,
+    this.title,
+    this.list,
   );
   FormInputModel.formJson(Map<String, dynamic> json)
       : placeHolder = json['placeHolder'],
@@ -36,7 +43,9 @@ class FormInputModel {
         name = json["name"],
         required = json["required"],
         requiredMsg = json["requiredMsg"],
-        value = json["value"];
+        value = json["value"],
+        title = json['title'],
+        list = json['list'];
 
   Map<String, dynamic> toJson() => {
         'placeHolder': placeHolder,
@@ -47,5 +56,7 @@ class FormInputModel {
         "required": required,
         "requiredMsg": requiredMsg,
         "value": value,
+        "title": title,
+        "list": list
       };
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutterbbase/components/Form/Select.dart';
 import 'package:flutterbbase/components/Svg.dart';
+import 'package:flutterbbase/models/Form/form.dart';
 import 'package:flutterbbase/models/Form/input.dart';
 
 import 'Input.dart';
@@ -9,7 +11,8 @@ import 'Input.dart';
 class FormFieldCom extends StatelessWidget {
   final FormInputModel formInputModel;
   final FormCallBackItem onCallBack;
-  FormFieldCom(this.formInputModel, this.onCallBack);
+  final FormSelfModel formSelfModel;
+  FormFieldCom(this.formInputModel, this.formSelfModel, this.onCallBack);
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -30,15 +33,34 @@ class FormFieldCom extends StatelessWidget {
             : Container(),
         Expanded(
           flex: 1,
-          child: FormInput(
-            Key(formInputModel.name),
-            (val) {
-              onCallBack(val);
-            },
-            formInputModel,
-          ),
+          child: _generateItem(formSelfModel),
         ),
       ],
     );
+  }
+
+  Widget _generateItem(m) {
+    /// type = 'input' FormInputModel转换
+    Widget item = Text("没有匹配类型, 请输入 input、");
+    switch (m.type) {
+      case "input":
+        item = FormInput(
+          Key(formInputModel.name),
+          (val) {
+            onCallBack(val);
+          },
+          formInputModel,
+        );
+        break;
+      case "select":
+        item = FormSelectCom(
+            key: Key(formInputModel.name),
+            onCallBack: (val) {
+              onCallBack(val);
+            },
+            data: formInputModel);
+        break;
+    }
+    return item;
   }
 }

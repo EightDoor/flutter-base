@@ -29,6 +29,24 @@ class _DemoFormState extends State<DemoForm> {
         "name": "title",
       }
     },
+    {
+      "type": "select",
+      "properties": {
+        "placeHolder": "请选择",
+        "prefix": Icon(Icons.ac_unit),
+        "name": "xuanze",
+        "list": [
+          {
+            "value": "2",
+            "label": "测试",
+          },
+          {
+            "value": "1",
+            "label": "测试1",
+          },
+        ]
+      }
+    },
   ];
 
   @override
