@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterbbase/components/Tapped.dart';
 import 'package:flutterbbase/models/Form/input.dart';
-import 'package:flutterbbase/utils/index.dart';
-import 'package:flutterbbase/utils/show_bottom_sheet.dart';
-import 'package:get/get.dart';
+import 'package:flutterbbase/utils/show_picker_utils.dart';
 
 import 'Input.dart';
 
@@ -24,8 +22,6 @@ class _FormSelectComState extends State<FormSelectCom> {
   @override
   void initState() {
     super.initState();
-    // widget.onCallBack("test");
-    selectLabel = widget.data.placeHolder ?? "请选择";
   }
 
   @override
@@ -41,8 +37,19 @@ class _FormSelectComState extends State<FormSelectCom> {
       margin: EdgeInsets.only(top: 15.sp),
       child: Tapped(
         onTap: () {
-          showBottomSheetUtil(context,
-              child: _generateList(), title: widget.data.title);
+          ShowPickerUtils.showSingPicker(
+            context: context,
+            sourceList: widget.data.list ?? [],
+            selectLabel: selectLabel,
+            callChange: (val) {
+              setState(() {
+                selectLabel = val;
+              });
+            },
+            callResult: (val) {
+              widget.onCallBack(val);
+            },
+          );
         },
         child: Row(
           children: [
@@ -52,35 +59,5 @@ class _FormSelectComState extends State<FormSelectCom> {
         ),
       ),
     );
-  }
-
-  List<Widget> _generateList() {
-    var list = widget.data.list ?? [];
-    return list.map((e) => _item(e["label"], e["value"])).toList();
-  }
-
-  Widget _item(
-    String label,
-    String value,
-  ) {
-    return ListTile(
-      onTap: () {
-        formatValue(value);
-        widget.onCallBack(value);
-        Get.back();
-      },
-      title: Text(label),
-    );
-  }
-
-  void formatValue(String value) {
-    final list = widget.data.list ?? [];
-    var result = list.firstWhere((e) => e["value"] == value);
-    if (result.isNotEmpty) {
-      Utils.log().i('当前选择的: select -> ' + result.toString());
-      setState(() {
-        selectLabel = result['label'];
-      });
-    }
   }
 }

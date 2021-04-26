@@ -60,6 +60,7 @@ class FormFieldCom extends StatelessWidget {
             },
             data: formInputModel);
         break;
+      case "time":
     }
     return item;
   }

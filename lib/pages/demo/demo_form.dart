@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterbbase/components/Form/Form.dart';
 import 'package:flutterbbase/components/TextCom.dart';
+import 'package:flutterbbase/utils/business_utils.dart';
 import 'package:flutterbbase/utils/index.dart';
 
 /// 表单统一使用form
@@ -15,7 +16,7 @@ class _DemoFormState extends State<DemoForm> {
       "type": "input",
       "properties": {
         "placeHolder": "默认值",
-        "prefix": TextCom("测试"),
+        "prefix": TextCom("输入框"),
         "name": "title",
         "required": "0",
         "requiredMsg": "哈哈哈",
@@ -33,7 +34,7 @@ class _DemoFormState extends State<DemoForm> {
       "type": "select",
       "properties": {
         "placeHolder": "请选择",
-        "prefix": Icon(Icons.ac_unit),
+        "prefix": TextCom("下拉选择框"),
         "name": "xuanze",
         "list": [
           {
@@ -47,6 +48,14 @@ class _DemoFormState extends State<DemoForm> {
         ]
       }
     },
+    {
+      "type": "time",
+      "properties": {
+        "placeHolder": "请选择时间",
+        "prefix": TextCom("测试"),
+        "name": "title",
+      }
+    },
   ];
 
   @override
@@ -55,14 +64,10 @@ class _DemoFormState extends State<DemoForm> {
 
     // 填充默认值
     Future.delayed(Duration(seconds: 2), () {
-      final List<Map<String, dynamic>> r = list;
-      final int index = r.indexWhere((e) => e['properties']["name"] == 'title');
-      if (index != -1) {
-        r[index]["properties"]['value'] = 'test 自动填充的数据';
-        setState(() {
-          list = r;
-        });
-      }
+      var r = BusinessUtils.replaceFormValue(list, "title", "设置的值");
+      setState(() {
+        list = r;
+      });
     });
   }
 
