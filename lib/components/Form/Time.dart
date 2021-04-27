@@ -5,7 +5,7 @@ import 'package:flutter_pickers/time_picker/model/date_mode.dart';
 import 'package:flutter_pickers/time_picker/model/pduration.dart';
 import 'package:flutter_pickers/time_picker/model/suffix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutterbbase/components/Form/Select.dart';
+import 'package:flutterbbase/utils/business_utils.dart';
 import 'package:flutterbbase/utils/index.dart';
 
 import 'Input.dart';
@@ -24,27 +24,29 @@ void showFormTimePicker({
   // selectDate: PDuration(hour: 18, minute: 36, second: 36),
   // minDate: PDuration(hour: 12, minute: 38, second: 3),
   // maxDate: PDuration(hour: 12, minute: 40, second: 36),
-  Pickers.showDatePicker(context,
-      mode: mode,
-      pickerStyle: PickerStyle(
-        commitButton: Padding(
-          padding: EdgeInsets.only(right: 15.sp),
-          child: Text("确定"),
-        ),
+  Pickers.showDatePicker(
+    context,
+    mode: mode,
+    pickerStyle: PickerStyle(
+      commitButton: Padding(
+        padding: EdgeInsets.only(right: 15.sp),
+        child: Text("确定"),
       ),
-      suffix: suffix,
-      selectDate: selectDate,
-      minDate: minDate,
-      onChanged: (p) {
-        if (callBackChange != null) {
-          callBackChange(formatModel(p, mode)!);
-        }
-      },
-      maxDate: maxDate,
-      onConfirm: (p) {
-        Utils.log().d(
-          '当前选择的日期: ' + formatModel(p, mode).toString(),
-        );
-        callBackItem(formatModel(p, mode)!);
-      });
+    ),
+    suffix: suffix,
+    selectDate: selectDate,
+    minDate: minDate,
+    onChanged: (p) {
+      if (callBackChange != null) {
+        callBackChange(BusinessUtils.formatModel(p, mode)!);
+      }
+    },
+    maxDate: maxDate,
+    onConfirm: (p) {
+      Utils.log().d(
+        '当前选择的日期: ' + BusinessUtils.formatModel(p, mode).toString(),
+      );
+      callBackItem(BusinessUtils.formatModel(p, mode)!);
+    },
+  );
 }

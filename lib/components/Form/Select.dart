@@ -6,22 +6,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterbbase/components/Form/Time.dart';
 import 'package:flutterbbase/components/Tapped.dart';
 import 'package:flutterbbase/models/Form/input.dart';
+import 'package:flutterbbase/utils/business_utils.dart';
 import 'package:flutterbbase/utils/show_picker_utils.dart';
 
 import 'Input.dart';
-
-var selectData = {
-  DateMode.YMDHMS: '',
-  DateMode.YMDHM: '',
-  DateMode.YMDH: '',
-  DateMode.YMD: '',
-  DateMode.YM: '',
-  DateMode.Y: '',
-  DateMode.MDHMS: '',
-  DateMode.HMS: '',
-  DateMode.MD: '',
-  DateMode.S: '',
-};
 
 /// 选择
 class FormSelectCom extends StatefulWidget {
@@ -96,7 +84,8 @@ class _FormSelectComState extends State<FormSelectCom> {
                 }
               }
               setState(() {
-                selectLabel = formatModel(defaultValue, defaultMode)!;
+                selectLabel =
+                    BusinessUtils.formatModel(defaultValue, defaultMode)!;
               });
               showFormTimePicker(
                   context: context,
@@ -126,42 +115,4 @@ class _FormSelectComState extends State<FormSelectCom> {
       ),
     );
   }
-}
-
-String? formatModel(PDuration p, DateMode modeS) {
-  switch (modeS) {
-    case DateMode.YMDHMS:
-      selectData[modeS] =
-          '${p.year}-${p.month}-${p.day} ${p.hour}:${p.minute}:${p.second}';
-      break;
-    case DateMode.YMDHM:
-      selectData[modeS] = '${p.year}-${p.month}-${p.day} ${p.hour}:${p.minute}';
-      break;
-    case DateMode.YMDH:
-      selectData[modeS] = '${p.year}-${p.month}-${p.day} ${p.hour}';
-      break;
-    case DateMode.YMD:
-      selectData[modeS] = '${p.year}-${p.month}-${p.day}';
-      break;
-    case DateMode.YM:
-      selectData[modeS] = '${p.year}-${p.month}';
-      break;
-    case DateMode.Y:
-      selectData[modeS] = '${p.year}-${p.month}';
-      break;
-    case DateMode.MDHMS:
-      selectData[modeS] =
-          '${p.month}-${p.day} ${p.hour}:${p.minute}:${p.second}';
-      break;
-    case DateMode.HMS:
-      selectData[modeS] = '${p.hour}:${p.minute}:${p.second}';
-      break;
-    case DateMode.MD:
-      selectData[modeS] = '${p.month}-${p.day}';
-      break;
-    case DateMode.S:
-      selectData[modeS] = '${p.second}';
-      break;
-  }
-  return selectData[modeS];
 }
