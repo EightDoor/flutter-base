@@ -63,7 +63,16 @@ class _MySettingVersionState extends State<MySettingVersion> {
                 NavigatorUtil.jump(name: DemoRoute.form);
               },
             ),
-          )
+          ),
+          ListTile(
+            leading: Text("demo"),
+            trailing: RaisedButton(
+              child: Text("轮播图demo"),
+              onPressed: () {
+                NavigatorUtil.jump(name: DemoRoute.swiper);
+              },
+            ),
+          ),
         ],
       ),
     );

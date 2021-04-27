@@ -56,6 +56,8 @@ dependencies:
   video_player: ^2.1.1
   # 下拉框选择
   flutter_pickers: ^2.0.1
+  # 轮播图
+  flutter_swiper_null_safety: ^1.0.1
 
 
 dev_dependencies:
