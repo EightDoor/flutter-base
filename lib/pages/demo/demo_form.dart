@@ -53,7 +53,7 @@ class _DemoFormState extends State<DemoForm> {
       "properties": {
         "placeHolder": "请选择时间",
         "prefix": TextCom("测试"),
-        "name": "title",
+        "name": "timeTest",
       }
     },
   ];
@@ -64,7 +64,10 @@ class _DemoFormState extends State<DemoForm> {
 
     // 填充默认值
     Future.delayed(Duration(seconds: 2), () {
-      var r = BusinessUtils.replaceFormValue(list, "title", "设置的值");
+      var r = BusinessUtils.replaceFormValue(list, [
+        {"name": "title", "value": "设置的值"},
+        {"name": "timeTest", "value": "2020-02-04"}
+      ]);
       setState(() {
         list = r;
       });

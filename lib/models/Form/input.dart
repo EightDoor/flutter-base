@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_pickers/time_picker/model/date_mode.dart';
 
 class FormInputModel {
   // 标识name
@@ -23,6 +24,9 @@ class FormInputModel {
   // 列表项 select
   final List<Map<String, dynamic>>? list;
 
+  // mode 时间格式
+  final DateMode? mode;
+
   FormInputModel(
     this.placeHolder,
     this.prefix,
@@ -34,6 +38,7 @@ class FormInputModel {
     this.value,
     this.title,
     this.list,
+    this.mode,
   );
   FormInputModel.formJson(Map<String, dynamic> json)
       : placeHolder = json['placeHolder'],
@@ -45,7 +50,8 @@ class FormInputModel {
         requiredMsg = json["requiredMsg"],
         value = json["value"],
         title = json['title'],
-        list = json['list'];
+        list = json['list'],
+        mode = json["model"];
 
   Map<String, dynamic> toJson() => {
         'placeHolder': placeHolder,
@@ -57,6 +63,7 @@ class FormInputModel {
         "requiredMsg": requiredMsg,
         "value": value,
         "title": title,
-        "list": list
+        "list": list,
+        "mode": mode
       };
 }

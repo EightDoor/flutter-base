@@ -54,6 +54,7 @@ class FormFieldCom extends StatelessWidget {
         break;
       case "select":
         item = FormSelectCom(
+            type: "select",
             key: Key(formInputModel.name),
             onCallBack: (val) {
               onCallBack(val);
@@ -61,6 +62,13 @@ class FormFieldCom extends StatelessWidget {
             data: formInputModel);
         break;
       case "time":
+        item = FormSelectCom(
+            type: "time",
+            key: Key(formInputModel.name),
+            onCallBack: (val) {
+              onCallBack(val);
+            },
+            data: formInputModel);
     }
     return item;
   }
