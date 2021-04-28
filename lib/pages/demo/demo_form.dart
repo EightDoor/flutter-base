@@ -52,10 +52,35 @@ class _DemoFormState extends State<DemoForm> {
       "type": "time",
       "properties": {
         "placeHolder": "请选择时间",
-        "prefix": TextCom("测试"),
+        "prefix": TextCom("时间选择"),
         "name": "timeTest",
       }
     },
+    {
+      "type": "radio",
+      "properties": {
+        "prefix": TextCom("单选"),
+        "name": "selectRadio",
+        "list": [
+          {
+            "value": "2",
+            "label": "测试",
+            "width": 100.0,
+          },
+          {
+            "value": "1",
+            "label": "测试1",
+          },
+        ]
+      }
+    },
+    {
+      "type": "custom",
+      "properties": {
+        "component": Text("我的"),
+        "name": "custom",
+      },
+    }
   ];
 
   @override
@@ -80,42 +105,47 @@ class _DemoFormState extends State<DemoForm> {
       appBar: AppBar(
         title: Text("表单demo"),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            FormCom(
-              list,
-              onCallBack: (val) {
-                Utils.log().i('form值 ${val.toList()}');
-              },
-              submit: Text("保存"),
-            ),
-            RaisedButton(
-              onPressed: () {
-                setState(
-                  () {
-                    list.add(
-                      {
-                        "type": "input",
-                        "properties": {
-                          "placeHolder": "1111",
-                          "prefix": Text("55555"),
-                          "name": "666"
-                        }
-                      },
-                    );
-                  },
-                );
-              },
-              child: Text("点击增加"),
-            ),
-            RaisedButton(
-              onPressed: () {
-                formKey.currentState!.reset();
-              },
-              child: Text("清空表单"),
-            ),
-          ],
+      body: Padding(
+        padding: EdgeInsets.all(
+          10,
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              FormCom(
+                list,
+                onCallBack: (val) {
+                  Utils.log().i('form值 ${val.toList()}');
+                },
+                submit: Text("保存"),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  setState(
+                    () {
+                      list.add(
+                        {
+                          "type": "input",
+                          "properties": {
+                            "placeHolder": "1111",
+                            "prefix": Text("55555"),
+                            "name": "666"
+                          }
+                        },
+                      );
+                    },
+                  );
+                },
+                child: Text("点击增加"),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  formKey.currentState!.reset();
+                },
+                child: Text("清空表单"),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterbbase/components/Form/Time.dart';
 import 'package:flutterbbase/components/Tapped.dart';
 import 'package:flutterbbase/models/Form/input.dart';
-import 'package:flutterbbase/utils/business_utils.dart';
 import 'package:flutterbbase/utils/show_picker_utils.dart';
 
 import 'Input.dart';
@@ -36,7 +35,7 @@ class _FormSelectComState extends State<FormSelectCom> {
   @override
   void didUpdateWidget(covariant FormSelectCom oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.data.value != null) {
+    if (widget.data.value != null && selectLabel.isEmpty) {
       setState(() {
         selectLabel = widget.data.value ?? "";
       });
@@ -83,26 +82,22 @@ class _FormSelectComState extends State<FormSelectCom> {
                   defaultValue = PDuration.parse(dateTime);
                 }
               }
-              setState(() {
-                selectLabel =
-                    BusinessUtils.formatModel(defaultValue, defaultMode)!;
-              });
+
               showFormTimePicker(
                   context: context,
                   selectDate: defaultValue,
                   mode: defaultMode,
-                  callBackChange: (val) {
+                  callBackItem: (val) {
+                    widget.onCallBack(val);
                     setState(() {
                       selectLabel = val;
                     });
-                  },
-                  callBackItem: (val) {
-                    widget.onCallBack(val);
                   });
               break;
           }
         },
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text((selectLabel.isNotEmpty
                 ? selectLabel

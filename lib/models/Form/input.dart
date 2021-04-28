@@ -27,6 +27,9 @@ class FormInputModel {
   // mode 时间格式
   final DateMode? mode;
 
+  // 自定义组件
+  final Widget? component;
+
   FormInputModel(
     this.placeHolder,
     this.prefix,
@@ -39,6 +42,7 @@ class FormInputModel {
     this.title,
     this.list,
     this.mode,
+    this.component,
   );
   FormInputModel.formJson(Map<String, dynamic> json)
       : placeHolder = json['placeHolder'],
@@ -51,7 +55,8 @@ class FormInputModel {
         value = json["value"],
         title = json['title'],
         list = json['list'],
-        mode = json["model"];
+        mode = json["model"],
+        component = json["component"];
 
   Map<String, dynamic> toJson() => {
         'placeHolder': placeHolder,
@@ -64,6 +69,7 @@ class FormInputModel {
         "value": value,
         "title": title,
         "list": list,
-        "mode": mode
+        "mode": mode,
+        "component": component,
       };
 }

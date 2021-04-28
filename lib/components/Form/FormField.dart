@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutterbbase/components/Form/Radio.dart';
 import 'package:flutterbbase/components/Form/Select.dart';
 import 'package:flutterbbase/components/Svg.dart';
 import 'package:flutterbbase/models/Form/form.dart';
@@ -19,12 +20,14 @@ class FormFieldCom extends StatelessWidget {
       mainAxisAlignment:
           formInputModel.mainAxisAlignment ?? MainAxisAlignment.spaceBetween,
       children: [
-        formInputModel.prefix != null
-            ? SizedBox(
-                width: formInputModel.prefixWidth ?? 50.w,
-                child: formInputModel.prefix,
-              )
-            : Container(),
+        formInputModel.component != null
+            ? Container()
+            : formInputModel.prefix != null
+                ? SizedBox(
+                    width: formInputModel.prefixWidth ?? 50.w,
+                    child: formInputModel.prefix,
+                  )
+                : Container(),
         formInputModel.required != null
             ? SvgComponent(
                 url: 'assets/images/required.svg',
@@ -43,6 +46,9 @@ class FormFieldCom extends StatelessWidget {
     /// type = 'input' FormInputModel转换
     Widget item = Text("没有匹配类型, 请输入 input、");
     switch (m.type) {
+      case "custom":
+        item = formInputModel.component!;
+        break;
       case "input":
         item = FormInput(
           Key(formInputModel.name),
@@ -69,6 +75,16 @@ class FormFieldCom extends StatelessWidget {
               onCallBack(val);
             },
             data: formInputModel);
+        break;
+      case "radio":
+        item = FormRadio(
+          Key(formInputModel.name),
+          (val) {
+            onCallBack(val);
+          },
+          formInputModel,
+        );
+        break;
     }
     return item;
   }
