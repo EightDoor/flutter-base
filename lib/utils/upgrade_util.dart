@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterbbase/api/api_common.dart';
 import 'package:flutterbbase/models/upgrade.dart';
 import 'package:flutterbbase/utils/index.dart';
+import 'package:flutterbbase/utils/upgrade_dialog.dart';
 import 'package:package_info/package_info.dart';
 
 class UpgradeUtil {
@@ -53,10 +54,10 @@ class UpgradeUtil {
   static void show(BuildContext context, Upgrade upgrade) async {
     var result = await showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (context) {
         return Dialog(
-          child: Text("123"),
-          // UpgradeDialog(upgrade: upgrade)
+          child: UpgradeDialog(upgrade: upgrade),
         );
       },
     );

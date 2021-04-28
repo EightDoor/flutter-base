@@ -67,6 +67,7 @@ class _FormRadioState extends State<FormRadio> {
                 setState(() {
                   _value = v!;
                 });
+                widget.onCallBack(v!);
               },
             ),
           ),
